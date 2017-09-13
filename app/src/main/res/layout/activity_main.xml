@@ -4,13 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     tools:context="com.tj.lotty_wh.sample.MainActivity">
+    <Button
+        android:id="@+id/string_get"
+        android:onClick="doGetString"
+        android:text="@string/string_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/json_get"
+        android:onClick="doGetJson"
+        android:text="@string/json_get"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_height="0dp"
         android:id="@+id/text" />
 
 </LinearLayout>

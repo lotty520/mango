@@ -2,13 +2,15 @@ package com.tj.lotty_wh.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.tj.lotty_wh.mango.HttpResponse;
 import com.tj.lotty_wh.mango.HttpScheduler;
-import com.tj.lotty_wh.sample.services.OmsStringService;
+import com.tj.lotty_wh.sample.entity.WeatherInfo;
+import com.tj.lotty_wh.sample.services.JsonService;
+import com.tj.lotty_wh.sample.services.StringService;
 
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
@@ -23,11 +25,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTextView = (TextView) findViewById(R.id.text);
-        doGet(GET_URL);
     }
 
-    private void doGet(String url) {
-        OmsStringService.INSTANCE.doGet(url).compose(HttpScheduler.<String>applyAndroidSchedulers())
+    public void doGetString(View view) {
+        StringService.INSTANCE.doGet(GET_URL).compose(HttpScheduler.<String>applyAndroidSchedulers())
                 .subscribe(new HttpResponse<String>() {
                     @Override
                     public void onResponse(@NonNull String result) {
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
                     @Override
                     public void onError(@NonNull Throwable t, @NonNull String msg) {
-                        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+                        mTextView.setText(msg);
                     }
 
                     @Override
@@ -45,6 +46,27 @@ public class MainActivity extends AppCompatActivity {
                         // if (!disposable.isDisposed()) {
                         //     disposable.dispose();
                         // }
+                    }
+                });
+    }
+
+    public void doGetJson(View view) {
+        JsonService.INSTANCE.doGet(GET_URL).compose(HttpScheduler.<WeatherInfo>applyAndroidSchedulers())
+                .subscribe(new HttpResponse<WeatherInfo>() {
+                    @Override
+                    public void onResponse(@NonNull WeatherInfo result) {
+                        mTextView.setText(result.toString());
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable t, @NonNull String msg) {
+                        mTextView.setText(msg);
+
+                    }
+
+                    @Override
+                    public void onGetDisposable(@NonNull Disposable disposable) {
+
                     }
                 });
     }

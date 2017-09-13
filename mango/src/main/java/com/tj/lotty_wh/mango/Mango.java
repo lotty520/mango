@@ -93,7 +93,7 @@ public class Mango {
      * @param progressListener 下载进度监听器
      * @return 用于请求的 service 对象
      */
-    public static <S> S createInputStreamServiceWithProgessListener(Class<S> serviceClass, ProgressListener progressListener) {
+    public static <S> S createServiceWithProgessListener(Class<S> serviceClass, ProgressListener progressListener) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(fetchBaseUrl(serviceClass))
                 .client(HttpClientProvider.getProgressiveHttpClient(progressListener, sIsLogOpen))
@@ -123,6 +123,10 @@ public class Mango {
         }
         if (TextUtils.isEmpty(baseUrl)) {
             baseUrl = sDefaultBaseUrl;
+        }
+        if(TextUtils.isEmpty(baseUrl))
+        {
+            throw new IllegalStateException("baseUrl should define in init or in service");
         }
         return baseUrl;
     }

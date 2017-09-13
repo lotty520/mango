@@ -9,7 +9,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
- * 为 Retrofit 提供 OkHttpClient 提供实现
+ * provide Retrofit an  OkHttpClient instance
  * <p>
  * Created by lotty_wh on 2017/5/8.
  */
@@ -36,38 +36,29 @@ class HttpClientProvider {
     static OkHttpClient getDefault(boolean openLog) {
         synchronized (HttpClientProvider.class) {
             if (sDefaultClient == null) {
-                OkHttpClient.Builder builder = new OkHttpClient.Builder();
+                OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
                 if (openLog) {
-                    sDefaultClient = applyLogOpen(builder).build();
+                    builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
                 }
-                sDefaultClient = apply(builder).build();
+                sDefaultClient = builder.build();
             }
         }
         return sDefaultClient;
     }
 
     /**
-     * 扩展头部标记的OkHttpClient
+     * 请求监听的OkHttpClient
      */
     static OkHttpClient getProgressiveHttpClient(ProgressListener progressListener, boolean openLog) {
-        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
         if (openLog) {
-            return applyLogOpen(builder).addInterceptor(new ProgressInterceptor(progressListener)).build();
+            builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         }
-        return apply(builder).addInterceptor(new ProgressInterceptor(progressListener)).build();
+        return builder.addInterceptor(new ProgressInterceptor(progressListener)).build();
     }
 
     /**
-     * OkHttpClient.Builder通用设置并打开日志
-     */
-    private static OkHttpClient.Builder applyLogOpen(@NonNull OkHttpClient.Builder builder) {
-        //打开日志
-        apply(builder).addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-        return builder;
-    }
-
-    /**
-     * OkHttpClient.Builder通用设置
+     * OkHttpClient.Builder settings
      */
     private static OkHttpClient.Builder apply(@NonNull OkHttpClient.Builder builder) {
         //设置超时时间

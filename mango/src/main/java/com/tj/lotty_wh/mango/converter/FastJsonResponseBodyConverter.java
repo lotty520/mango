@@ -23,7 +23,6 @@ public class FastJsonResponseBodyConverter<T> implements Converter<ResponseBody,
 
     @Override
     public T convert(ResponseBody value) throws IOException {
-        value.contentType() ;
         return JSON.parseObject(value.byteStream(), type);
     }
 }
