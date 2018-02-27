@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
 public class HttpScheduler {
 
     /**
-     * RxJava的链式留转换器，实现生产在IO线程，消费在安卓主线程
+     * RxJava的链式流转换器，实现生产在IO线程，消费在安卓主线程
      *
      * @return
      */
@@ -28,7 +28,7 @@ public class HttpScheduler {
     }
 
     /**
-     * RxJava的链式留转换器，实现生产和消费都在IO线程
+     * RxJava的链式流转换器，实现生产和消费都在IO线程
      *
      * @return
      */
@@ -42,7 +42,7 @@ public class HttpScheduler {
     }
 
     /**
-     * RxJava的链式留转换器，生产在新线程,消费在IO线程
+     * RxJava的链式流转换器，生产在新线程,消费在IO线程
      *
      * @return
      */
@@ -56,7 +56,7 @@ public class HttpScheduler {
     }
 
     /**
-     * RxJava的链式留转换器，生产在新线程,消费在安卓主线程
+     * RxJava的链式流转换器，生产在新线程,消费在安卓主线程
      *
      * @return
      */
