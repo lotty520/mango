@@ -22,7 +22,6 @@ public class InputStreamConvertFactory extends Converter.Factory {
     private InputStreamConvertFactory() {
     }
 
-
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,
                                                             Retrofit retrofit) {
@@ -31,7 +30,8 @@ public class InputStreamConvertFactory extends Converter.Factory {
 
     @Override
     public Converter<?, RequestBody> requestBodyConverter(Type type,
-                                                          Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+                                                          Annotation[] parameterAnnotations,
+                                                          Annotation[] methodAnnotations, Retrofit retrofit) {
         return super.requestBodyConverter(type, parameterAnnotations, methodAnnotations, retrofit);
     }
 }

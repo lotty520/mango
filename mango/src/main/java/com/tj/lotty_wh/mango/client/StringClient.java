@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.mango.http;
+package com.tj.lotty_wh.mango.client;
 
 import java.util.Map;
 
@@ -11,9 +11,9 @@ import com.tj.lotty_wh.mango.services.StringService;
  * 提供默认的String请求
  */
 
-public class StringRequest {
+public class StringClient {
 
-    private StringRequest() {
+    private StringClient() {
     }
 
     public static void getString(String url, HttpResponse httpResponse) {

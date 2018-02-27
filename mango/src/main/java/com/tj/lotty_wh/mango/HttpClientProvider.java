@@ -65,7 +65,6 @@ class HttpClientProvider {
         builder.connectTimeout(DEFAULT_CONNECT_TIMEOUT, TimeUnit.SECONDS);
         builder.writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS);
-        // TODO: 2017/5/9 添加一些通用的拦截器
         return builder;
     }
 

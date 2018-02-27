@@ -2,7 +2,7 @@ package com.tj.lotty_wh.sample;
 
 import com.tj.lotty_wh.mango.HttpResponse;
 import com.tj.lotty_wh.mango.HttpScheduler;
-import com.tj.lotty_wh.mango.http.StringRequest;
+import com.tj.lotty_wh.mango.client.StringClient;
 import com.tj.lotty_wh.sample.entity.WeatherInfo;
 import com.tj.lotty_wh.sample.services.JsonService;
 
@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void doGetString(View view) {
-        StringRequest.getString(GET_URL, new HttpResponse<String>() {
+        StringClient.getString(GET_URL, new HttpResponse<String>() {
             @Override
             public void onResponse(String result) {
                 mTextView.setText(result);
@@ -64,5 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+
+
     }
 }

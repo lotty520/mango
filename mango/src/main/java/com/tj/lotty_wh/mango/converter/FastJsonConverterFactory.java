@@ -19,9 +19,9 @@ public class FastJsonConverterFactory extends Converter.Factory {
         return new FastJsonConverterFactory();
     }
 
-
     @Override
-    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations,
+                                                          Annotation[] methodAnnotations, Retrofit retrofit) {
         return new FastJsonRequestBodyConverter<>();
     }
 

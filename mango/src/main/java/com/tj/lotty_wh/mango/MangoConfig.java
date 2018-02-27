@@ -1,6 +1,6 @@
 package com.tj.lotty_wh.mango;
 
-import android.support.annotation.NonNull;
+import io.reactivex.annotations.NonNull;
 
 public class MangoConfig {
     boolean mOpenLog;

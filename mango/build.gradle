@@ -13,7 +13,6 @@ android {
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -33,11 +32,10 @@ def retrofitAdapterRxjavaVersion = "2.2.0"
 def okHttpLogInterceptorVersion = "3.6.0"
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:26.+'
     compile "io.reactivex.rxjava2:rxandroid:$rxandroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rxjavaVersion"
     compile "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
     compile "com.squareup.retrofit2:adapter-rxjava2:$retrofitAdapterRxjavaVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$okHttpLogInterceptorVersion"
     compile 'com.alibaba:fastjson:1.2.32'

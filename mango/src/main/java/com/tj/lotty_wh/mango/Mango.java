@@ -1,7 +1,6 @@
 package com.tj.lotty_wh.mango;
 
 
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 
@@ -11,6 +10,8 @@ import com.tj.lotty_wh.mango.converter.FastJsonConverterFactory;
 import com.tj.lotty_wh.mango.converter.InputStreamConvertFactory;
 import com.tj.lotty_wh.mango.converter.StringConvertFactory;
 import com.tj.lotty_wh.mango.interceptor.ProgressListener;
+
+import io.reactivex.annotations.Nullable;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 

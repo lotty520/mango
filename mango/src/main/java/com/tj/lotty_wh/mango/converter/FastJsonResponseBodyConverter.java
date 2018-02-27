@@ -1,9 +1,9 @@
 package com.tj.lotty_wh.mango.converter;
 
-import com.alibaba.fastjson.JSON;
-
 import java.io.IOException;
 import java.lang.reflect.Type;
+
+import com.alibaba.fastjson.JSON;
 
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
@@ -17,7 +17,7 @@ import retrofit2.Converter;
 public class FastJsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private final Type type;
 
-    public FastJsonResponseBodyConverter(Type type) {
+    FastJsonResponseBodyConverter(Type type) {
         this.type = type;
     }
 
