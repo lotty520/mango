@@ -36,22 +36,22 @@ public abstract class HttpResponse<T> implements SingleObserver<T> {
     /**
      * 请求成功的回调
      *
-     * @param result
+     * @param result 返回泛型的结果
      */
     public abstract void onResponse(@NonNull T result);
 
     /**
      * 出错的回调
      *
-     * @param msg
-     * @param t
+     * @param msg 错误信息
+     * @param t 异常对象
      */
     public abstract void onError(@NonNull Throwable t, @NonNull String msg);
 
     /**
      * 获取对应请求Disposable对象，实现对请求的管理
      *
-     * @param disposable
+     * @param disposable 网络管理对象
      */
     public abstract void onGetDisposable(@NonNull Disposable disposable);
 
