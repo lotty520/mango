@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.mango.converter;
+package com.lotty520.mango.converter;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -10,18 +10,19 @@ import retrofit2.Retrofit;
 
 /**
  * 获取字符的ConvertFactory
- * Created by lotty_wh on 2017/5/8.
+ *
+ * @author lotty_wh
+ * @date 2017/5/8
  */
 
 public class StringConvertFactory extends Converter.Factory {
 
-    public static StringConvertFactory create() {
-        return new StringConvertFactory();
-    }
-
     private StringConvertFactory() {
     }
 
+    public static StringConvertFactory create() {
+        return new StringConvertFactory();
+    }
 
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations,

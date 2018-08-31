@@ -1,9 +1,10 @@
-package com.tj.lotty_wh.mango;
+package com.lotty520.mango;
+
+import com.lotty520.mango.interceptor.OnProgressChangedListener;
+import com.lotty520.mango.interceptor.ProgressInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
-import com.tj.lotty_wh.mango.interceptor.ProgressInterceptor;
-import com.tj.lotty_wh.mango.interceptor.ProgressListener;
 import io.reactivex.annotations.NonNull;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -21,7 +22,9 @@ class HttpClientProvider {
     private final static long DEFAULT_READ_TIMEOUT = 10;
 
 
-    //缓存默认的OkHttpClient对象
+    /**
+     * 缓存默认的OkHttpClient对象
+     */
     private static OkHttpClient sDefaultClient;
 
     /**
@@ -47,17 +50,6 @@ class HttpClientProvider {
     }
 
     /**
-     * 请求监听的OkHttpClient
-     */
-    static OkHttpClient getProgressiveHttpClient(ProgressListener progressListener, boolean openLog) {
-        OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
-        if (openLog) {
-            builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-        }
-        return builder.addInterceptor(new ProgressInterceptor(progressListener)).build();
-    }
-
-    /**
      * OkHttpClient.Builder settings
      */
     private static OkHttpClient.Builder apply(@NonNull OkHttpClient.Builder builder) {
@@ -66,6 +58,17 @@ class HttpClientProvider {
         builder.writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(DEFAULT_READ_TIMEOUT, TimeUnit.SECONDS);
         return builder;
+    }
+
+    /**
+     * 请求监听的OkHttpClient
+     */
+    static OkHttpClient getProgressiveHttpClient(OnProgressChangedListener progressListener, boolean openLog) {
+        OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
+        if (openLog) {
+            builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
+        }
+        return builder.addInterceptor(new ProgressInterceptor(progressListener)).build();
     }
 
 }

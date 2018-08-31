@@ -1,28 +1,31 @@
-package com.tj.lotty_wh.mango;
+package com.lotty520.mango;
 
 import io.reactivex.annotations.NonNull;
 
+/**
+ * @author lotty
+ */
 public class MangoConfig {
-    boolean mOpenLog;
-    String mBaseUrl;
+    boolean openLog;
+    String baseURL;
 
     private MangoConfig(Builder builder) {
-        mOpenLog = builder.mOpenLog;
-        mBaseUrl = builder.mBaseUrl;
+        this.openLog = builder.openLog;
+        this.baseURL = builder.baseURL;
     }
 
     public static class Builder {
-        private boolean mOpenLog;
-        private String mBaseUrl;
+        private boolean openLog;
+        private String baseURL;
 
         /**
-         * 开启 okhttp 日志
+         * 开启日志
          *
          * @param openLog 是否开启日志
          * @return 当前对象
          */
         public Builder openLog(boolean openLog) {
-            this.mOpenLog = openLog;
+            this.openLog = openLog;
             return this;
         }
 
@@ -33,7 +36,7 @@ public class MangoConfig {
          * @return 当前对象
          */
         public Builder baseUrl(@NonNull String url) {
-            this.mBaseUrl = url;
+            this.baseURL = url;
             return this;
         }
 

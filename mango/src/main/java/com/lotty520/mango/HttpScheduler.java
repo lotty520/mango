@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.mango;
+package com.lotty520.mango;
 
 import io.reactivex.Single;
 import io.reactivex.SingleSource;
@@ -8,7 +8,8 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * Created by lotty_wh on 2017/5/9.
+ * @author lotty_wh
+ * @date 2017/5/9
  */
 
 public class HttpScheduler {
@@ -28,7 +29,7 @@ public class HttpScheduler {
     /**
      * RxJava的链式流转换器，实现生产和消费都在IO线程
      */
-    public static <T> SingleTransformer<T, T> applyAllInIOSchedulers() {
+    public static <T> SingleTransformer<T, T> applyIOSchedulers() {
         return new SingleTransformer<T, T>() {
             @Override
             public SingleSource<T> apply(@NonNull Single<T> single) {
@@ -37,27 +38,4 @@ public class HttpScheduler {
         };
     }
 
-    /**
-     * RxJava的链式流转换器，生产在新线程,消费在IO线程
-     */
-    public static <T> SingleTransformer<T, T> applySubscribeOnNewThread() {
-        return new SingleTransformer<T, T>() {
-            @Override
-            public SingleSource<T> apply(@NonNull Single<T> single) {
-                return single.observeOn(Schedulers.io()).subscribeOn(Schedulers.newThread());
-            }
-        };
-    }
-
-    /**
-     * RxJava的链式流转换器，生产在新线程,消费在安卓主线程
-     */
-    public static <T> SingleTransformer<T, T> applyObserveOnMainThread() {
-        return new SingleTransformer<T, T>() {
-            @Override
-            public SingleSource<T> apply(@NonNull Single<T> single) {
-                return single.observeOn(Schedulers.io()).subscribeOn(Schedulers.newThread());
-            }
-        };
-    }
 }

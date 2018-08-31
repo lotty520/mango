@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.mango.interceptor;
+package com.lotty520.mango.interceptor;
 
 import java.io.IOException;
 
@@ -12,17 +12,19 @@ import okio.Source;
 
 /**
  * 支持下载进度的 ResponseBody
+ *
+ * @author lotty
  */
-class ProgressResponseBody extends ResponseBody {
+public class ProgressResponseBody extends ResponseBody {
 
     private final ResponseBody responseBody;
-    private final ProgressListener progressListener;
+    private final OnProgressChangedListener mProgressListener;
     private BufferedSource bufferedSource;
 
     public ProgressResponseBody(ResponseBody responseBody,
-                                ProgressListener progressListener) {
+                                OnProgressChangedListener progressListener) {
         this.responseBody = responseBody;
-        this.progressListener = progressListener;
+        this.mProgressListener = progressListener;
     }
 
     @Override
@@ -52,9 +54,8 @@ class ProgressResponseBody extends ResponseBody {
                 long bytesRead = super.read(sink, byteCount);
                 // read() returns the number of bytes read, or -1 if this source is exhausted.
                 totalBytesRead += bytesRead != -1 ? bytesRead : 0;
-
-                if (null != progressListener) {
-                    progressListener.update(totalBytesRead, responseBody.contentLength(), bytesRead == -1);
+                if (null != mProgressListener) {
+                    mProgressListener.onUpdate(totalBytesRead, responseBody.contentLength(), bytesRead == -1);
                 }
                 return bytesRead;
             }
