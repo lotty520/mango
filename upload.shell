@@ -1,0 +1,3 @@
+gradle mango:clean
+gradle mango:install
+gradle mango:bintrayUpload
