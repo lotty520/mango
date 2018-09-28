@@ -7,6 +7,8 @@ import com.lotty520.mango.services.StringService;
 
 import java.util.Map;
 
+import okhttp3.RequestBody;
+
 /**
  * @author lotty
  * @date 2018/2/27
@@ -37,13 +39,13 @@ public class StringClient {
         }
     }
 
-    public static void get(String url, Callback callback, Map<String, Object> parmas) {
+    public static void get(String url, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doGet(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
                 .subscribe(callback);
     }
 
-    public static void getWithPath(String path, Callback callback, Map<String, Object> parmas) {
+    public static void getWithPath(String path, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doGetWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
                 .subscribe(callback);
@@ -62,9 +64,16 @@ public class StringClient {
                 .subscribe(callback);
     }
 
-    public static void post(String url, Callback callback, Map<String, Object> parmas) {
+    public static void post(String url, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doPost(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
+                .subscribe(callback);
+    }
+
+    public static void postWithBody(String url, String parmas, Callback callback) {
+        checkInit();
+        RequestBody requestBody = RequestBody.create(null, parmas);
+        INSTANCE.doPostWithBody(url, requestBody).compose(HttpScheduler.<String>applyAndroidSchedulers())
                 .subscribe(callback);
     }
 
@@ -74,7 +83,7 @@ public class StringClient {
                 .subscribe(callback);
     }
 
-    public static void postWithPath(String path, Callback callback, Map<String, Object> parmas) {
+    public static void postWithPath(String path, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doPostWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
                 .subscribe(callback);
