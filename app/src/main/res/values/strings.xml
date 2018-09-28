@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Mango</string>
-    <string name="string_get">string response</string>
-    <string name="json_get">json response</string>
+    <string name="path_get">path get</string>
+    <string name="body_post">body post</string>
 </resources>

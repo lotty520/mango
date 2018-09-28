@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private final static String PATH = "data/sk/101010100.html";
 
     private final static String URL = "http://www.weather.com.cn/data/sk/101010100.html";
+    private final static String IO_URL = "https://gank.io/api/today";
 
     private TextView mTextView;
 
@@ -44,6 +45,24 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
 
+    public void doPostWithBody(View view) {
+        StringClient.postWithBody(IO_URL, "", new Callback<String>() {
+            @Override
+            public void onError(Throwable t, String msg) {
+                mTextView.setText(msg);
+            }
+
+            @Override
+            public void onResponse(String result) {
+                mTextView.setText(result);
+            }
+
+            @Override
+            public void onGetDisposable(Disposable disposable) {
+
+            }
+        });
     }
 }

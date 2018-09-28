@@ -44,7 +44,6 @@ public interface StringService {
     @POST
     Single<String> doPost(@Url String url, @FieldMap Map<String, Object> params);
 
-    @FormUrlEncoded
     @POST
     Single<String> doPostWithBody(@Url String url, @Body RequestBody params);
 

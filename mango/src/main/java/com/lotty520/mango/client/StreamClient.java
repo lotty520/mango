@@ -8,6 +8,8 @@ import com.lotty520.mango.services.StreamService;
 import java.io.InputStream;
 import java.util.Map;
 
+import okhttp3.RequestBody;
+
 /**
  * @author lotty
  */
@@ -62,6 +64,13 @@ public class StreamClient {
     public static void post(String url, Callback callback, Map<String, Object> parmas) {
         checkInit();
         INSTANCE.doPost(url, parmas).compose(HttpScheduler.<InputStream>applyAndroidSchedulers())
+                .subscribe(callback);
+    }
+
+    public static void postWithBody(String url, String parmas, Callback callback) {
+        checkInit();
+        RequestBody requestBody = RequestBody.create(null, parmas);
+        INSTANCE.doPostWithBody(url, requestBody).compose(HttpScheduler.<InputStream>applyAndroidSchedulers())
                 .subscribe(callback);
     }
 
