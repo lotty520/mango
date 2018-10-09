@@ -77,6 +77,13 @@ public class StringClient {
                 .subscribe(callback);
     }
 
+    public static void postWithBody(String url, String parmas, String contentType, Callback callback) {
+        checkInit();
+        RequestBody requestBody = RequestBody.create(null, parmas);
+        INSTANCE.doPostWithBody(url, requestBody, contentType).compose(HttpScheduler.<String>applyAndroidSchedulers())
+                .subscribe(callback);
+    }
+
     public static void postWithPath(String path, Callback callback) {
         checkInit();
         INSTANCE.doPostWithPath(path).compose(HttpScheduler.<String>applyAndroidSchedulers())

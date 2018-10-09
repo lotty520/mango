@@ -8,6 +8,7 @@ import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Url;
@@ -46,6 +47,9 @@ public interface StringService {
 
     @POST
     Single<String> doPostWithBody(@Url String url, @Body RequestBody params);
+
+    @POST
+    Single<String> doPostWithBody(@Url String url, @Body RequestBody params, @Header("Content-Type") String contentType);
 
     @POST("{path}")
     Single<String> doPostWithPath(@Path("path") String path);
