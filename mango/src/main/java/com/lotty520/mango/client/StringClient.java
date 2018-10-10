@@ -1,5 +1,6 @@
 package com.lotty520.mango.client;
 
+import com.lotty520.mango.CallBackProxy;
 import com.lotty520.mango.Callback;
 import com.lotty520.mango.HttpScheduler;
 import com.lotty520.mango.Mango;
@@ -30,7 +31,7 @@ public class StringClient {
     public static void get(String url, Callback callback) {
         checkInit();
         INSTANCE.doGet(url).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     private static void checkInit() {
@@ -42,58 +43,58 @@ public class StringClient {
     public static void get(String url, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doGet(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void getWithPath(String path, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doGetWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void getWithPath(String path, Callback callback) {
         checkInit();
         INSTANCE.doGetWithPath(path).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
 
     public static void post(String url, Callback callback) {
         checkInit();
         INSTANCE.doPost(url).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void post(String url, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doPost(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void postWithBody(String url, String parmas, Callback callback) {
         checkInit();
         RequestBody requestBody = RequestBody.create(null, parmas);
         INSTANCE.doPostWithBody(url, requestBody).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void postWithBody(String url, String parmas, String contentType, Callback callback) {
         checkInit();
         RequestBody requestBody = RequestBody.create(null, parmas);
         INSTANCE.doPostWithBody(url, requestBody, contentType).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void postWithPath(String path, Callback callback) {
         checkInit();
         INSTANCE.doPostWithPath(path).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
     public static void postWithPath(String path, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doPostWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(callback);
+                .subscribe(new CallBackProxy(callback));
     }
 
 }

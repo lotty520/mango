@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(String result) {
+            public void onSuccess(String result) {
                 mTextView.setText(result);
             }
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onResponse(String result) {
+            public void onSuccess(String result) {
                 mTextView.setText(result);
             }
 

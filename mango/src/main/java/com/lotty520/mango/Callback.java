@@ -1,38 +1,14 @@
 package com.lotty520.mango;
 
-import android.text.TextUtils;
-
-import io.reactivex.SingleObserver;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 
 /**
- * 对RxJava的SingleObserver简单封装
- *
  * @author lotty_wh
  * @date 2017/5/9
  */
 
-public abstract class Callback<T> implements SingleObserver<T> {
-
-    @Override
-    public void onSubscribe(@NonNull Disposable d) {
-        onGetDisposable(d);
-    }
-
-    @Override
-    public void onSuccess(@NonNull T t) {
-        onResponse(t);
-    }
-
-    @Override
-    public void onError(@NonNull Throwable e) {
-        String message = e.getMessage();
-        if (TextUtils.isEmpty(message)) {
-            message = "unKnow error!";
-        }
-        onError(e, message);
-    }
+public interface Callback<T> {
 
     /**
      * 出错的回调
@@ -40,20 +16,20 @@ public abstract class Callback<T> implements SingleObserver<T> {
      * @param msg 错误信息
      * @param t   异常对象
      */
-    public abstract void onError(@NonNull Throwable t, @NonNull String msg);
+    void onError(@NonNull Throwable t, @NonNull String msg);
 
     /**
      * 请求成功的回调
      *
      * @param result 返回泛型的结果
      */
-    public abstract void onResponse(@NonNull T result);
+    void onSuccess(@NonNull T result);
 
     /**
      * 获取对应请求Disposable对象，实现对请求的管理
      *
      * @param disposable 网络管理对象
      */
-    public abstract void onGetDisposable(@NonNull Disposable disposable);
+    void onGetDisposable(@NonNull Disposable disposable);
 
 }
