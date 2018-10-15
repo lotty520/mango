@@ -17,9 +17,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 class HttpClientProvider {
 
-    private final static long DEFAULT_CONNECT_TIMEOUT = 10;
+    private final static long DEFAULT_CONNECT_TIMEOUT = 20;
     private final static long DEFAULT_WRITE_TIMEOUT = 20;
-    private final static long DEFAULT_READ_TIMEOUT = 10;
+    private final static long DEFAULT_READ_TIMEOUT = 20;
 
 
     /**
