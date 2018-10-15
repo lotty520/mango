@@ -40,6 +40,12 @@ public class StringClient {
         }
     }
 
+    public static void get(String url, String contentType, Callback callback) {
+        checkInit();
+        INSTANCE.doGet(url, contentType).compose(HttpScheduler.<String>applyAndroidSchedulers())
+                .subscribe(new CallBackProxy(callback));
+    }
+
     public static void get(String url, Map<String, Object> parmas, Callback callback) {
         checkInit();
         INSTANCE.doGet(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())

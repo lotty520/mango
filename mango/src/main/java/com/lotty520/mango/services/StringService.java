@@ -25,6 +25,9 @@ public interface StringService {
     @GET
     Single<String> doGet(@Url String url);
 
+    @GET
+    Single<String> doGet(@Url String url, @Header("Content-Type") String contentType);
+
     @FormUrlEncoded
     @GET
     Single<String> doGet(@Url String url, @FieldMap Map<String, Object> params);
