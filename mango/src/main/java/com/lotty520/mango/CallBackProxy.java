@@ -3,9 +3,13 @@ package com.lotty520.mango;
 import android.text.TextUtils;
 
 import io.reactivex.SingleObserver;
+import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 
+/**
+ * @author lotty
+ */
 public class CallBackProxy<T> implements SingleObserver<T> {
 
     private Callback<T> callback;
@@ -15,22 +19,22 @@ public class CallBackProxy<T> implements SingleObserver<T> {
     }
 
     @Override
-    public void onSubscribe(Disposable disposable) {
+    public void onSubscribe(@NonNull Disposable disposable) {
         if (callback != null) {
-            callback.onGetDisposable(disposable);
+            callback.onGetClient(new Client(disposable));
         }
 
     }
 
     @Override
-    public void onSuccess(T t) {
+    public void onSuccess(@NonNull T t) {
         if (callback != null) {
             callback.onSuccess(t);
         }
     }
 
     @Override
-    public void onError(Throwable e) {
+    public void onError(@NonNull Throwable e) {
         String message = e.getMessage();
         if (TextUtils.isEmpty(message)) {
             message = "unKnow error!";

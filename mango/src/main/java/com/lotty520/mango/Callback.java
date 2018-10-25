@@ -1,7 +1,6 @@
 package com.lotty520.mango;
 
 import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
 
 /**
  * @author lotty_wh
@@ -28,8 +27,8 @@ public interface Callback<T> {
     /**
      * 获取对应请求Disposable对象，实现对请求的管理
      *
-     * @param disposable 网络管理对象
+     * @param client 网络管理对象
      */
-    void onGetDisposable(@NonNull Disposable disposable);
+    void onGetClient(@NonNull Client client);
 
 }

@@ -6,9 +6,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lotty520.mango.Callback;
+import com.lotty520.mango.Client;
 import com.lotty520.mango.client.StringClient;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * @author lotty
@@ -36,19 +35,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onGetClient(Client client) {
+
+            }
+
+            @Override
             public void onSuccess(String result) {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetDisposable(Disposable disposable) {
 
-            }
         });
     }
 
     public void doPostWithBody(View view) {
         StringClient.postWithBody(IO_URL, "", new Callback<String>() {
+            @Override
+            public void onGetClient(Client client) {
+
+            }
+
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -59,10 +65,6 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetDisposable(Disposable disposable) {
-
-            }
         });
     }
 }
