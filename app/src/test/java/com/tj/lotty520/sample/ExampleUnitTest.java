@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.sample;
+package com.tj.lotty520.sample;
 
 import org.junit.Test;
 

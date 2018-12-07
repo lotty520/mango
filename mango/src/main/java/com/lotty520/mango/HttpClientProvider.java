@@ -21,12 +21,6 @@ class HttpClientProvider {
     private final static long DEFAULT_WRITE_TIMEOUT = 20;
     private final static long DEFAULT_READ_TIMEOUT = 20;
 
-
-    /**
-     * 缓存默认的OkHttpClient对象
-     */
-    private static OkHttpClient sDefaultClient;
-
     /**
      * 不希望调用者创建对象
      */
@@ -37,16 +31,11 @@ class HttpClientProvider {
      * 获取默认的OkHttpClient
      */
     static OkHttpClient getDefault(boolean openLog) {
-        synchronized (HttpClientProvider.class) {
-            if (sDefaultClient == null) {
-                OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
-                if (openLog) {
-                    builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
-                }
-                sDefaultClient = builder.build();
-            }
+        OkHttpClient.Builder builder = apply(new OkHttpClient.Builder());
+        if (openLog) {
+            builder.addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY));
         }
-        return sDefaultClient;
+        return builder.build();
     }
 
     /**

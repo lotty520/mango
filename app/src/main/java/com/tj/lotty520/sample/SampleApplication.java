@@ -1,4 +1,4 @@
-package com.tj.lotty_wh.sample;
+package com.tj.lotty520.sample;
 
 import android.app.Application;
 
@@ -12,11 +12,11 @@ import com.lotty520.mango.MangoConfig;
 
 public class SampleApplication extends Application {
 
-    private static final String BASE_URL = "http://www.weather.com.cn/";
+    private static final String BASE_POST_URL = "https://env.tj-ckkj.com/Air/App/";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Mango.init(new MangoConfig.Builder().openLog(true).baseUrl(BASE_URL).build());
+        Mango.init(new MangoConfig.Builder().openLog(true).baseUrl(BASE_POST_URL).build());
     }
 }

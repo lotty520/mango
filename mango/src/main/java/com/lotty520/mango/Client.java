@@ -2,6 +2,9 @@ package com.lotty520.mango;
 
 import io.reactivex.disposables.Disposable;
 
+/**
+ * @author lotty
+ */
 public class Client {
 
     private Disposable mDisposable;

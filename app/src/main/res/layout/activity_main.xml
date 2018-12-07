@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,25 +7,62 @@
     android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
-    tools:context="com.tj.lotty_wh.sample.MainActivity">
+    tools:context="com.tj.lotty520.sample.MainActivity">
 
-    <Button
-        android:id="@+id/string_get"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="doGetString"
-        android:text="@string/path_get" />
-    <Button
-        android:id="@+id/string_post_body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="doPostWithBody"
-        android:text="@string/body_post" />
-
-    <TextView
-        android:id="@+id/text"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
 
-</LinearLayout>
+
+        <Button
+            android:id="@+id/string_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doGetString"
+            android:text="@string/url_get" />
+
+        <Button
+            android:id="@+id/string_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doPostString"
+            android:text="@string/url_post" />
+
+        <Button
+            android:id="@+id/string_path_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doGetPath"
+            android:text="@string/path_get" />
+
+        <Button
+            android:id="@+id/string_path_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doPostPath"
+            android:text="@string/path_post" />
+
+        <Button
+            android:id="@+id/param_path_get"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doGetParamPath"
+            android:text="@string/params_path_get" />
+
+        <Button
+            android:id="@+id/param_path_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="doPostParamPath"
+            android:text="@string/params_path_post" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp" />
+    </LinearLayout>
+
+</ScrollView>

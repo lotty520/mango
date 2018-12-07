@@ -20,6 +20,10 @@ public class InputStreamResponseBodyConverter implements Converter<ResponseBody,
 
     @Override
     public InputStream convert(ResponseBody value) throws IOException {
-        return value.byteStream();
+        try {
+            return value.byteStream();
+        } finally {
+            value.close();
+        }
     }
 }

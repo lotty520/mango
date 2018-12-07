@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Mango</string>
-    <string name="path_get">path get</string>
-    <string name="body_post">body post</string>
+    <string name="url_get">链接GET</string>
+    <string name="path_get">路径GET</string>
+    <string name="url_post">链接POST</string>
+    <string name="path_post">路径POST</string>
+    <string name="params_path_get">路径参数GET</string>
+    <string name="params_path_post">路径参数POST</string>
 </resources>

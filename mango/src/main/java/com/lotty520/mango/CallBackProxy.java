@@ -37,7 +37,7 @@ public class CallBackProxy<T> implements SingleObserver<T> {
     public void onError(@NonNull Throwable e) {
         String message = e.getMessage();
         if (TextUtils.isEmpty(message)) {
-            message = "unKnow error!";
+            message = "unKnow error";
         }
         if (callback != null) {
             callback.onError(e, message);

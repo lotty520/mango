@@ -8,9 +8,10 @@ import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Header;
+import retrofit2.http.HeaderMap;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 /**
@@ -26,19 +27,19 @@ public interface StringService {
     Single<String> doGet(@Url String url);
 
     @GET
-    Single<String> doGet(@Url String url, @Header("Content-Type") String contentType);
-
-    @FormUrlEncoded
-    @GET
-    Single<String> doGet(@Url String url, @FieldMap Map<String, Object> params);
-
+    Single<String> doGet(@Url String url, @QueryMap Map<String, Object> params);
 
     @GET("{path}")
     Single<String> doGetWithPath(@Path("path") String path);
 
-    @FormUrlEncoded
     @GET("{path}")
-    Single<String> doGetWithPath(@Path("path") String path, @FieldMap Map<String, Object> params);
+    Single<String> doGetWithPath(@Path("path") String path, @QueryMap Map<String, Object> params);
+
+    @GET
+    Single<String> doGetWithHeader(@Url String url, @HeaderMap Map<String, String> headers);
+
+    @GET("{path}")
+    Single<String> doGetPathWithHeader(@Path("path") String url, @HeaderMap Map<String, String> headers);
 
 
     @POST
@@ -52,7 +53,7 @@ public interface StringService {
     Single<String> doPostWithBody(@Url String url, @Body RequestBody params);
 
     @POST
-    Single<String> doPostWithBody(@Url String url, @Body RequestBody params, @Header("Content-Type") String contentType);
+    Single<String> doPostWithBody(@Url String url, @Body RequestBody params, @HeaderMap Map<String, String> header);
 
     @POST("{path}")
     Single<String> doPostWithPath(@Path("path") String path);

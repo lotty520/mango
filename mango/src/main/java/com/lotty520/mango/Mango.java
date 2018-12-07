@@ -3,7 +3,6 @@ package com.lotty520.mango;
 
 import android.text.TextUtils;
 
-import com.lotty520.mango.client.StreamClient;
 import com.lotty520.mango.client.StringClient;
 import com.lotty520.mango.converter.InputStreamConvertFactory;
 import com.lotty520.mango.converter.StringConvertFactory;
@@ -22,18 +21,17 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 public class Mango {
     private static final String SUFFIX = "/";
-    private static boolean sIsLogOpen = false;
-    private static String sDefaultBaseUrl;
+    private static boolean isLogOpen = false;
+    private static String baseUrl;
 
     private Mango() {
     }
 
     public static void init(@Nullable MangoConfig config) {
         if (config != null) {
-            sIsLogOpen = config.openLog;
-            sDefaultBaseUrl = config.baseURL;
+            isLogOpen = config.openLog;
+            baseUrl = config.baseURL;
         }
-        StreamClient.init();
         StringClient.init();
     }
 
@@ -47,7 +45,7 @@ public class Mango {
     public static <S> S createStringService(Class<S> serviceClass) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(fetchBaseUrl())
-                .client(HttpClientProvider.getDefault(sIsLogOpen))
+                .client(HttpClientProvider.getDefault(isLogOpen))
                 .addConverterFactory(StringConvertFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -58,8 +56,8 @@ public class Mango {
      * 获取BaseUrl
      */
     private static String fetchBaseUrl() {
-        if (!TextUtils.isEmpty(sDefaultBaseUrl) && sDefaultBaseUrl.endsWith(SUFFIX)) {
-            return sDefaultBaseUrl;
+        if (!TextUtils.isEmpty(baseUrl) && baseUrl.endsWith(SUFFIX)) {
+            return baseUrl;
         } else {
             throw new IllegalStateException("should init baseURL rightly");
         }
@@ -75,7 +73,7 @@ public class Mango {
     public static <S> S createInputStreamService(Class<S> serviceClass) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(fetchBaseUrl())
-                .client(HttpClientProvider.getDefault(sIsLogOpen))
+                .client(HttpClientProvider.getDefault(isLogOpen))
                 .addConverterFactory(InputStreamConvertFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -93,7 +91,7 @@ public class Mango {
     public static <S> S createServiceWithProgessListener(Class<S> serviceClass, OnProgressChangedListener progressListener) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(fetchBaseUrl())
-                .client(HttpClientProvider.getProgressiveHttpClient(progressListener, sIsLogOpen))
+                .client(HttpClientProvider.getProgressiveHttpClient(progressListener, isLogOpen))
                 .addConverterFactory(InputStreamConvertFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
