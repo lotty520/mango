@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.lotty520.mango.Callback;
-import com.lotty520.mango.Client;
 import com.lotty520.mango.client.StringClient;
 
 import java.util.HashMap;
@@ -49,10 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
 
-            }
         });
     }
 
@@ -64,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     public void doPostString(View view) {
         mTextView.setText("");
         StringClient.post(POST_URL, new Callback<String>() {
+
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -74,10 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
 
-            }
         });
     }
 
@@ -99,10 +93,6 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
-
-            }
         });
     }
 
@@ -124,10 +114,6 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
-
-            }
         });
     }
 
@@ -146,10 +132,6 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
-
-            }
         });
     }
 
@@ -168,10 +150,6 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
-            @Override
-            public void onGetClient(Client client) {
-
-            }
         });
     }
 }

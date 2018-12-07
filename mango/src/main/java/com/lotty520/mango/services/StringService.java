@@ -2,8 +2,8 @@ package com.lotty520.mango.services;
 
 import java.util.Map;
 
-import io.reactivex.Single;
 import okhttp3.RequestBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -24,42 +24,42 @@ import retrofit2.http.Url;
 public interface StringService {
 
     @GET
-    Single<String> doGet(@Url String url);
+    Call<String> doGet(@Url String url);
 
     @GET
-    Single<String> doGet(@Url String url, @QueryMap Map<String, Object> params);
+    Call<String> doGet(@Url String url, @QueryMap Map<String, Object> params);
 
     @GET("{path}")
-    Single<String> doGetWithPath(@Path("path") String path);
+    Call<String> doGetWithPath(@Path("path") String path);
 
     @GET("{path}")
-    Single<String> doGetWithPath(@Path("path") String path, @QueryMap Map<String, Object> params);
+    Call<String> doGetWithPath(@Path("path") String path, @QueryMap Map<String, Object> params);
 
     @GET
-    Single<String> doGetWithHeader(@Url String url, @HeaderMap Map<String, String> headers);
+    Call<String> doGetWithHeader(@Url String url, @HeaderMap Map<String, String> headers);
 
     @GET("{path}")
-    Single<String> doGetPathWithHeader(@Path("path") String url, @HeaderMap Map<String, String> headers);
+    Call<String> doGetPathWithHeader(@Path("path") String url, @HeaderMap Map<String, String> headers);
 
 
     @POST
-    Single<String> doPost(@Url String url);
+    Call<String> doPost(@Url String url);
 
     @FormUrlEncoded
     @POST
-    Single<String> doPost(@Url String url, @FieldMap Map<String, Object> params);
+    Call<String> doPost(@Url String url, @FieldMap Map<String, Object> params);
 
     @POST
-    Single<String> doPostWithBody(@Url String url, @Body RequestBody params);
+    Call<String> doPostWithBody(@Url String url, @Body RequestBody params);
 
     @POST
-    Single<String> doPostWithBody(@Url String url, @Body RequestBody params, @HeaderMap Map<String, String> header);
+    Call<String> doPostWithBody(@Url String url, @Body RequestBody params, @HeaderMap Map<String, String> header);
 
     @POST("{path}")
-    Single<String> doPostWithPath(@Path("path") String path);
+    Call<String> doPostWithPath(@Path("path") String path);
 
     @FormUrlEncoded
     @POST("{path}")
-    Single<String> doPostWithPath(@Path("path") String path, @FieldMap Map<String, Object> params);
+    Call<String> doPostWithPath(@Path("path") String path, @FieldMap Map<String, Object> params);
 
 }

@@ -1,6 +1,5 @@
 package com.lotty520.mango;
 
-import io.reactivex.annotations.NonNull;
 
 /**
  * @author lotty_wh
@@ -15,20 +14,13 @@ public interface Callback<T> {
      * @param msg 错误信息
      * @param t   异常对象
      */
-    void onError(@NonNull Throwable t, @NonNull String msg);
+    void onError(Throwable t, String msg);
 
     /**
      * 请求成功的回调
      *
      * @param result 返回泛型的结果
      */
-    void onSuccess(@NonNull T result);
-
-    /**
-     * 获取对应请求Disposable对象，实现对请求的管理
-     *
-     * @param client 网络管理对象
-     */
-    void onGetClient(@NonNull Client client);
+    void onSuccess(T result);
 
 }

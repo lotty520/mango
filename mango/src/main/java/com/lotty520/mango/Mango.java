@@ -8,9 +8,7 @@ import com.lotty520.mango.converter.InputStreamConvertFactory;
 import com.lotty520.mango.converter.StringConvertFactory;
 import com.lotty520.mango.interceptor.OnProgressChangedListener;
 
-import io.reactivex.annotations.Nullable;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
  * Http请求
@@ -27,7 +25,7 @@ public class Mango {
     private Mango() {
     }
 
-    public static void init(@Nullable MangoConfig config) {
+    public static void init(MangoConfig config) {
         if (config != null) {
             isLogOpen = config.openLog;
             baseUrl = config.baseURL;
@@ -47,7 +45,6 @@ public class Mango {
                 .baseUrl(fetchBaseUrl())
                 .client(HttpClientProvider.getDefault(isLogOpen))
                 .addConverterFactory(StringConvertFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(serviceClass);
     }
@@ -75,7 +72,6 @@ public class Mango {
                 .baseUrl(fetchBaseUrl())
                 .client(HttpClientProvider.getDefault(isLogOpen))
                 .addConverterFactory(InputStreamConvertFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(serviceClass);
     }
@@ -93,7 +89,6 @@ public class Mango {
                 .baseUrl(fetchBaseUrl())
                 .client(HttpClientProvider.getProgressiveHttpClient(progressListener, isLogOpen))
                 .addConverterFactory(InputStreamConvertFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         return retrofit.create(serviceClass);
     }

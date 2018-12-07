@@ -1,7 +1,5 @@
 package com.lotty520.mango;
 
-import io.reactivex.annotations.NonNull;
-
 /**
  * @author lotty
  */
@@ -35,7 +33,7 @@ public class MangoConfig {
          * @param url 网络请求的 baseUrl
          * @return 当前对象
          */
-        public Builder baseUrl(@NonNull String url) {
+        public Builder baseUrl(String url) {
             this.baseURL = url;
             return this;
         }

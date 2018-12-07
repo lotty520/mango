@@ -5,7 +5,6 @@ import com.lotty520.mango.interceptor.ProgressInterceptor;
 
 import java.util.concurrent.TimeUnit;
 
-import io.reactivex.annotations.NonNull;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 
@@ -41,7 +40,7 @@ class HttpClientProvider {
     /**
      * OkHttpClient.Builder settings
      */
-    private static OkHttpClient.Builder apply(@NonNull OkHttpClient.Builder builder) {
+    private static OkHttpClient.Builder apply(OkHttpClient.Builder builder) {
         //设置超时时间
         builder.connectTimeout(DEFAULT_CONNECT_TIMEOUT, TimeUnit.SECONDS);
         builder.writeTimeout(DEFAULT_WRITE_TIMEOUT, TimeUnit.SECONDS);

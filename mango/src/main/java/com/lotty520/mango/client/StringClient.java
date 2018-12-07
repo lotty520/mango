@@ -2,7 +2,6 @@ package com.lotty520.mango.client;
 
 import com.lotty520.mango.CallBackProxy;
 import com.lotty520.mango.Callback;
-import com.lotty520.mango.HttpScheduler;
 import com.lotty520.mango.Mango;
 import com.lotty520.mango.services.StringService;
 
@@ -28,86 +27,73 @@ public class StringClient {
         INSTANCE = Mango.createStringService(StringService.class);
     }
 
+    public static void get(String url, Callback<String> callback) {
+        checkInit();
+        INSTANCE.doGet(url).enqueue(new CallBackProxy(callback));
+    }
+
     private static void checkInit() {
         if (INSTANCE == null) {
             throw new IllegalStateException("should init first");
         }
     }
 
-    public static void get(String url, Callback callback) {
+    public static void get(String url, Map<String, Object> parmas, Callback<String> callback) {
         checkInit();
-        INSTANCE.doGet(url).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doGet(url, parmas).enqueue(new CallBackProxy(callback));
     }
 
-    public static void get(String url, Map<String, Object> parmas, Callback callback) {
+    public static void getWithPath(String path, Callback<String> callback) {
         checkInit();
-        INSTANCE.doGet(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doGetWithPath(path).enqueue(new CallBackProxy(callback));
     }
 
-    public static void getWithPath(String path, Callback callback) {
+    public static void getWithPath(String path, Map<String, Object> parmas, Callback<String> callback) {
         checkInit();
-        INSTANCE.doGetWithPath(path).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doGetWithPath(path, parmas).enqueue(new CallBackProxy(callback));
     }
 
-    public static void getWithPath(String path, Map<String, Object> parmas, Callback callback) {
+    public static void getWithHeaderFromUrl(String url, Map<String, String> header, Callback<String> callback) {
         checkInit();
-        INSTANCE.doGetWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doGetWithHeader(url, header).enqueue(new CallBackProxy(callback));
     }
 
-    public static void getWithHeaderFromUrl(String url, Map<String, String> header, Callback callback) {
+    public static void getWithHeaderFromPath(String path, Map<String, String> header, Callback<String> callback) {
         checkInit();
-        INSTANCE.doGetWithHeader(url, header).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
-    }
-
-    public static void getWithHeaderFromPath(String path, Map<String, String> header, Callback callback) {
-        checkInit();
-        INSTANCE.doGetPathWithHeader(path, header).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doGetPathWithHeader(path, header).enqueue(new CallBackProxy(callback));
     }
 
 
-
-    public static void post(String url, Callback callback) {
+    public static void post(String url, Callback<String> callback) {
         checkInit();
-        INSTANCE.doPost(url).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPost(url).enqueue(new CallBackProxy(callback));
     }
 
-    public static void post(String url, Map<String, Object> parmas, Callback callback) {
+    public static void post(String url, Map<String, Object> parmas, Callback<String> callback) {
         checkInit();
-        INSTANCE.doPost(url, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPost(url, parmas).enqueue(new CallBackProxy(callback));
     }
 
-    public static void postWithBody(String url, String parmas, Callback callback) {
+    public static void postWithBody(String url, String parmas, Callback<String> callback) {
         checkInit();
         RequestBody requestBody = RequestBody.create(null, parmas);
-        INSTANCE.doPostWithBody(url, requestBody).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPostWithBody(url, requestBody).enqueue(new CallBackProxy(callback));
     }
 
-    public static void postWithBody(String url, String parmas, Map<String,String> header, Callback callback) {
+    public static void postWithBody(String url, String parmas, Map<String, String> header, Callback<String> callback) {
         checkInit();
         RequestBody requestBody = RequestBody.create(null, parmas);
-        INSTANCE.doPostWithBody(url, requestBody, header).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPostWithBody(url, requestBody, header).enqueue(new CallBackProxy(callback));
     }
 
-    public static void postWithPath(String path, Callback callback) {
+    public static void postWithPath(String path, Callback<String> callback) {
         checkInit();
-        INSTANCE.doPostWithPath(path).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPostWithPath(path).enqueue(new CallBackProxy(callback));
     }
 
-    public static void postWithPath(String path, Map<String, Object> parmas, Callback callback) {
+    public static void postWithPath(String path, Map<String, Object> parmas, Callback<String> callback) {
         checkInit();
-        INSTANCE.doPostWithPath(path, parmas).compose(HttpScheduler.<String>applyAndroidSchedulers())
-                .subscribe(new CallBackProxy(callback));
+        INSTANCE.doPostWithPath(path, parmas).enqueue(new CallBackProxy(callback));
     }
 
 }
