@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     buildToolsVersion "28.0.0"
     defaultConfig {
-        applicationId "com.tj.lotty_wh.mango"
+        applicationId "com.tj.lotty520.sample"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1

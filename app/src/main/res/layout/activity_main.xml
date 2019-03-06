@@ -58,6 +58,13 @@
             android:onClick="doPostParamPath"
             android:text="@string/params_path_post" />
 
+        <Button
+            android:id="@+id/downloader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="download"
+            android:text="@string/download" />
+
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"

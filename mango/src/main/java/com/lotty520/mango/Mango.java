@@ -3,7 +3,6 @@ package com.lotty520.mango;
 
 import android.text.TextUtils;
 
-import com.lotty520.mango.client.StringClient;
 import com.lotty520.mango.converter.InputStreamConvertFactory;
 import com.lotty520.mango.converter.StringConvertFactory;
 import com.lotty520.mango.interceptor.OnProgressChangedListener;
@@ -29,6 +28,9 @@ public class Mango {
         if (config != null) {
             isLogOpen = config.openLog;
             baseUrl = config.baseURL;
+            if (config.initLoader) {
+                FileClient.init();
+            }
         }
         StringClient.init();
     }

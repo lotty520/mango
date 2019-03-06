@@ -5,15 +5,18 @@ package com.lotty520.mango;
  */
 public class MangoConfig {
     boolean openLog;
+    boolean initLoader;
     String baseURL;
 
     private MangoConfig(Builder builder) {
         this.openLog = builder.openLog;
         this.baseURL = builder.baseURL;
+        this.initLoader = builder.initLoader;
     }
 
     public static class Builder {
         private boolean openLog;
+        private boolean initLoader;
         private String baseURL;
 
         /**
@@ -26,6 +29,18 @@ public class MangoConfig {
             this.openLog = openLog;
             return this;
         }
+
+        /**
+         * 初始化下载器
+         *
+         * @param init 是否初始化下载器
+         * @return 当前对象
+         */
+        public Builder initDownloader(boolean init) {
+            this.initLoader = init;
+            return this;
+        }
+
 
         /**
          * 设置默认 baseUrl

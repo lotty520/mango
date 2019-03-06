@@ -1,6 +1,5 @@
 package com.lotty520.mango.converter;
 
-import java.io.IOException;
 import java.io.InputStream;
 
 import okhttp3.ResponseBody;
@@ -19,11 +18,7 @@ public class InputStreamResponseBodyConverter implements Converter<ResponseBody,
     }
 
     @Override
-    public InputStream convert(ResponseBody value) throws IOException {
-        try {
-            return value.byteStream();
-        } finally {
-            value.close();
-        }
+    public InputStream convert(ResponseBody value) {
+        return value.byteStream();
     }
 }

@@ -4,10 +4,17 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.lotty520.mango.Callback;
-import com.lotty520.mango.client.StringClient;
+import com.lotty520.mango.FileClient;
+import com.lotty520.mango.StringClient;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,10 +23,9 @@ import java.util.Map;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private final static String CITY_PATH = "GetCity";
+    private final static String USERS_PATH = "users";
 
-    private final static String POST_URL = "https://env.tj-ckkj.com/Air/App/GetCity";
-    private final static String GET_URL = "http://www.weather.com.cn/data/sk/101010100.html";
+    private final static String URL = "https://api.github.com";
 
     private TextView mTextView;
 
@@ -37,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void doGetString(View view) {
         mTextView.setText("");
-        StringClient.get(GET_URL, new Callback<String>() {
+        StringClient.get(URL, new Callback<String>() {
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void doPostString(View view) {
         mTextView.setText("");
-        StringClient.post(POST_URL, new Callback<String>() {
+        StringClient.post(URL, new Callback<String>() {
 
             @Override
             public void onError(Throwable t, String msg) {
@@ -82,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void doGetPath(View view) {
         mTextView.setText("");
-        StringClient.getWithPath(CITY_PATH, new Callback<String>() {
+        StringClient.getWithPath(USERS_PATH, new Callback<String>() {
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -103,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void doPostPath(View view) {
         mTextView.setText("");
-        StringClient.getWithPath(CITY_PATH, new Callback<String>() {
+        StringClient.postWithPath(USERS_PATH, new Callback<String>() {
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -120,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
     public void doGetParamPath(View view) {
         mTextView.setText("");
         Map<String, Object> param = new HashMap<>();
-        param.put("city", "杭州");
-        StringClient.getWithPath(CITY_PATH, param, new Callback<String>() {
+        StringClient.getWithPath(USERS_PATH, param, new Callback<String>() {
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -138,8 +143,7 @@ public class MainActivity extends AppCompatActivity {
     public void doPostParamPath(View view) {
         mTextView.setText("");
         Map<String, Object> param = new HashMap<>();
-        param.put("city", "杭州");
-        StringClient.postWithPath(CITY_PATH, param, new Callback<String>() {
+        StringClient.postWithPath(USERS_PATH, param, new Callback<String>() {
             @Override
             public void onError(Throwable t, String msg) {
                 mTextView.setText(msg);
@@ -150,6 +154,39 @@ public class MainActivity extends AppCompatActivity {
                 mTextView.setText(result);
             }
 
+        });
+    }
+
+    public void download(View view) {
+        FileClient.get("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1752460159,226752426&fm=26&gp=0.jpg", new Callback<InputStream>() {
+            @Override
+            public void onError(Throwable t, String msg) {
+
+            }
+
+            @Override
+            public void onSuccess(InputStream is) {
+
+                if (is == null) {
+                }
+                try {
+                    File targetFile = new File(getCacheDir().getAbsolutePath() + "/shell.jpg");
+                    if (!targetFile.exists()) {
+                        targetFile.createNewFile();
+                    }
+                    FileOutputStream fos = new FileOutputStream(targetFile);
+                    byte[] buf = new byte[1024];
+                    int len;
+                    while ((len = is.read(buf)) != -1) {
+                        fos.write(buf, 0, len);
+                    }
+                    Toast.makeText(MainActivity.this, "下载成功", Toast.LENGTH_SHORT).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         });
     }
 }

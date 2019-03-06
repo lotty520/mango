@@ -12,11 +12,11 @@ import com.lotty520.mango.MangoConfig;
 
 public class SampleApplication extends Application {
 
-    private static final String BASE_POST_URL = "https://env.tj-ckkj.com/Air/App/";
+    private static final String BASE_POST_URL = "https://api.github.com/";
 
     @Override
     public void onCreate() {
         super.onCreate();
-        Mango.init(new MangoConfig.Builder().openLog(true).baseUrl(BASE_POST_URL).build());
+        Mango.init(new MangoConfig.Builder().openLog(true).baseUrl(BASE_POST_URL).initDownloader(true).build());
     }
 }

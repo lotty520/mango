@@ -1,8 +1,5 @@
-package com.lotty520.mango.client;
+package com.lotty520.mango;
 
-import com.lotty520.mango.CallBackProxy;
-import com.lotty520.mango.Callback;
-import com.lotty520.mango.Mango;
 import com.lotty520.mango.services.StringService;
 
 import java.util.Map;
@@ -23,7 +20,7 @@ public class StringClient {
 
     }
 
-    public static void init() {
+    static void init() {
         INSTANCE = Mango.createStringService(StringService.class);
     }
 
