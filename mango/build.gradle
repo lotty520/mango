@@ -22,6 +22,8 @@ android {
     }
 }
 
+
+// 不知道为什么，现在需要在集成了mango的应用里面手动集成一下这两个依赖
 dependencies {
     implementation "com.squareup.retrofit2:retrofit:2.5.0"
     implementation "com.squareup.okhttp3:logging-interceptor:3.12.0"
@@ -33,7 +35,7 @@ def site = 'https://github.com/lotty520/mango'
 def gitPath = 'https://github.com/lotty520/mango.git'
 
 group = "com.lotty520"
-version = "1.4.1"
+version = "1.6.0"
 
 install {
     repositories.mavenInstaller {
@@ -101,6 +103,6 @@ bintray {
         websiteUrl = site
         vcsUrl = gitPath
         licenses = ["Apache-2.0"]
-        publish = true
+        publish = false
     }
 }
