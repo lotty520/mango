@@ -62,4 +62,7 @@ public interface StringService {
     @POST("{path}")
     Call<String> doPostWithPath(@Path("path") String path, @FieldMap Map<String, Object> params);
 
+    @POST
+    Call<String> uploadFile(@Url String url, @Body RequestBody body);
+
 }

@@ -65,6 +65,13 @@
             android:onClick="download"
             android:text="@string/download" />
 
+        <Button
+            android:id="@+id/upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="upload"
+            android:text="@string/upload" />
+
         <TextView
             android:id="@+id/text"
             android:layout_width="match_parent"

@@ -1,9 +1,16 @@
 package com.lotty520.mango;
 
+import android.text.TextUtils;
+
 import com.lotty520.mango.services.StringService;
 
+import java.io.File;
+import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -91,6 +98,28 @@ public class StringClient {
     public static void postWithPath(String path, Map<String, Object> parmas, Callback<String> callback) {
         checkInit();
         INSTANCE.doPostWithPath(path, parmas).enqueue(new CallBackProxy(callback));
+    }
+
+
+    public static void uploadFile(String url, Map<String, String> params, String key, File file, Callback<String> callback) {
+        checkInit();
+        RequestBody fileBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Builder builder = new MultipartBody.Builder();
+        if (params != null) {
+            Set<String> keySet = params.keySet();
+            Iterator<String> iterator = keySet.iterator();
+            while (iterator.hasNext()) {
+                String next = iterator.next();
+                String value = params.get(next);
+                if (!TextUtils.isEmpty(next)) {
+                    builder.addFormDataPart(next, value);
+                }
+
+            }
+        }
+        MultipartBody body = builder.addFormDataPart(key, file.getName(), fileBody).build();
+        INSTANCE.uploadFile(url, body).enqueue(new CallBackProxy(callback));
+
     }
 
 }

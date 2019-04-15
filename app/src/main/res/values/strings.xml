@@ -7,4 +7,5 @@
     <string name="params_path_get">路径参数GET</string>
     <string name="params_path_post">路径参数POST</string>
     <string name="download">下载</string>
+    <string name="upload">上传文件</string>
 </resources>

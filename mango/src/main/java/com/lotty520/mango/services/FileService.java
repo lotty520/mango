@@ -26,4 +26,5 @@ public interface FileService {
     @Streaming
     @FormUrlEncoded
     Call<InputStream> doPost(@Url String url);
+
 }

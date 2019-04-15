@@ -189,4 +189,24 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void upload(View view) {
+        Map<String, String> pa = new HashMap<>();
+        pa.put("token", "token");
+        pa.put("uid", "uid");
+        pa.put("id", "id");
+        pa.put("name", "name");
+        String s = getCacheDir().getAbsolutePath() + "/shell.jpg";
+        File file = new File(s);
+        StringClient.uploadFile("http://shici.weaa.cn/index.php/Api/sc/uploadsly", pa, "listen", file, new Callback<String>() {
+            @Override
+            public void onError(Throwable t, String msg) {
+            }
+
+            @Override
+            public void onSuccess(String result) {
+
+            }
+        });
+    }
 }
