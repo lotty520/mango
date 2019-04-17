@@ -103,7 +103,7 @@ public class StringClient {
 
     public static void uploadFile(String url, Map<String, String> params, String key, File file, Callback<String> callback) {
         checkInit();
-        RequestBody fileBody = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        RequestBody fileBody = RequestBody.create(MediaType.parse("application/octet-stream"), file);
         MultipartBody.Builder builder = new MultipartBody.Builder();
         if (params != null) {
             Set<String> keySet = params.keySet();

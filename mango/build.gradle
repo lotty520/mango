@@ -35,7 +35,7 @@ def site = 'https://github.com/lotty520/mango'
 def gitPath = 'https://github.com/lotty520/mango.git'
 
 group = "com.lotty520"
-version = "1.6.0"
+version = "1.6.1"
 
 install {
     repositories.mavenInstaller {
